@@ -1,0 +1,86 @@
+.card-img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.full-width-card {
+  max-width: 100%;
+}
+.card-body {
+  font-size: 20px;
+}
+.container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.box {
+  border: 1px solid rgb(218, 188, 188);
+  margin-top: 3%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #3bce3b45;
+  position: relative;
+}
+.inner-box {
+  display: flex;
+  gap: 20px;
+}
+.image-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 194, 194);
+}
+.image-box img {
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+footer {
+  margin-top: 1%;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+p {
+  margin-top: 5%;
+  font-size: 20px;
+}
+.text-box {
+  margin-left: 2%;
+}
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: green !important;
+  font-family: "Roboto Mono", monospace;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s;
+}
+.nav-link.active,
+.nav-link:hover {
+  color: rgb(103, 233, 103) !important;
+}
+.nav-pills .nav-link {
+  margin: 0 0.5rem;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header {
+  /* background-color: #f8f9fa; */
+  border-bottom: 3px solid #4caf50;
+}
+
+header .fs-4 {
+  color: #343a40;
+  font-weight: bolder;
+}
+.row{
+  margin: auto;
+}
