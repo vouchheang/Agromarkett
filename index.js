@@ -1,5 +1,9 @@
+// Get the URL parameters
+
+
 async function fetchProductsByCategory(categoryId) {
   const url = `https://colorful-ball-607353d204.strapiapp.com/api/products?filters[categoryID][CategoryID][$eq]=${categoryId}&pagination[pageSize]=6&populate=*`;
+
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -17,7 +21,7 @@ async function fetchProductsByCategory(categoryId) {
       cards += `
           <div class="col-md-4 mb-4">
             <div class="card position-relative">
-              <img src="${imageUrl}" class="card-img-top" alt="Image">
+              <a href="./pages/detail/index.html?productid=${product.attributes.ProductID}"><img src="${imageUrl}" class="card-img-top" alt="Image"></a>
               ${
                 products[i].attributes.Origanic
                   ? '<span class="organic-badge">Organic</span>'

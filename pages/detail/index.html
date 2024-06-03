@@ -87,37 +87,24 @@
     </div>
 
     <script>
-      const categoryId = 1; // Replace with the appropriate category ID
-      const apiURL = `https://colorful-ball-607353d204.strapiapp.com/api/products?filters[categoryID][CategoryID][$eq]=${categoryId}&pagination[pageSize]=5&populate=*`;
+      // const categoryId = 1; // Replace with the appropriate category ID
+     
       const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get("product");
+      const productId = urlParams.get("productid");
 
-      async function fetchProducts() {
-        try {
-          const response = await fetch(apiURL);
-          const data = await response.json();
-          console.log(data);
 
-          if (productId) {
-            const selectedProduct = data.data.find(
-              (product) => product.id === parseInt(productId)
-            );
-            if (selectedProduct) {
-              displayProductDetails(selectedProduct);
-            }
-          } else {
-            displayProductDetails(data.data[0]);
-          }
 
-          displayRelatedProducts(data.data.slice(1));
-        } catch (error) {
-          console.error("Error fetching products:", error);
+      async function getSingleProduct(){
+    let url=`https://colorful-ball-607353d204.strapiapp.com/api/products?filters[ProductID][$in][0]=${productId}&populate=*`;
+     try{
+        const res = await fetch(url);
+        const data = await res.json();
+        const products=data.data;
+        let display=document.getElementById('product-container');
         
-      }
-
-      function displayProductDetails(product) {
-        const productContainer = document.getElementById("product-container");
-        productContainer.innerHTML = `
+        for (let i = 0; i < products.length; i++) {
+            const product = products[i];         
+            display.innerHTML =  `
                 <div class="col-md-6">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner" style="border-radius: 40px 3px;">
@@ -166,33 +153,45 @@
                    
                 </div>
             `;
-      }
 
-      function displayRelatedProducts(products) {
-        const relatedProductsContainer =
-          document.getElementById("related-products");
-        relatedProductsContainer.innerHTML = products
-          .map(
+         console.log(product);
+        //  display.innerHTML+="<div>"+ProductInformation1+ProductInformation2+"</div>";
+        }
+        
+        let card = document.getElementById('related-products');
+let url1 = `https://colorful-ball-607353d204.strapiapp.com/api/products?filters[category][categoryId][$eq]=${products[0].attributes.categoryID.data.id}&pagination[pageSize]=4&populate=*`;
+try {
+    const res1 = await fetch(url1);
+    const data1 = await res1.json();
+    const products1 = data1.data;
+    card.innerHTML += products1
+        .map(
             (product) => `
-                <div class="col-md-3">
-                    <div class="card shadow">
-                        <a href="?product=${product.id}">
-                            <img src="${product.attributes.images.data[0].attributes.url}" class="card-img-top" alt="Related Product">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">${product.attributes.Name}</h5>
-                            <p>Price: ${product.attributes.Price}$</p>
-                            <p>Quantity: ${product.attributes.Quantity}kg</p>
-                            <p class="card-text">Natural Fruits Sweat and Juicy ever exist.</p>
-                        </div>
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <a href="?product=${product.id}">
+                        <img src="${product.attributes.images.data[0].attributes.url}" class="card-img-top" alt="Related Product">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">${product.attributes.Name}</h5>
+                        <p>Price: ${product.attributes.Price}$</p>
+                        <p>Quantity: ${product.attributes.Quantity}kg</p>
+                        <p class="card-text">Natural Fruits Sweet and Juicy ever exist.</p>
                     </div>
                 </div>
-            `
-          )
-          .join("");
+            </div>
+        `
+        )
+        .join("");
+} catch (error) {
+    console.error("Error fetching related products:", error);
+}
+
+     }catch (error) {
+        console.error("Error fetching products:", error);
       }
-            }
-                  fetchProducts();
+}
+getSingleProduct();
     </script>
   </body>
 </html>
