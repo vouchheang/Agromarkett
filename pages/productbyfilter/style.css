@@ -10,6 +10,26 @@
   padding: 5px 5px;
   border-radius: 5px;
 }
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: green !important;
+  font-family: "Roboto Mono", monospace;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s;
+}
+.nav-link.active,
+.nav-link:hover {
+  color: rgb(103, 233, 103) !important;
+}
+.nav-pills .nav-link {
+  margin: 0 0.5rem;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 .card-img-top {
   width: 100%;
   margin-top: -10%;
@@ -147,23 +167,21 @@ footer {
   text-align: center;
   font-size: 20px;
 }
+.navigation-container {
+  display: flex;
+  margin-left:22%;
+}
 
 .nav-link {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: green !important;
-  font-family: "Roboto Mono", monospace;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s;
+  text-decoration: none;
+  color: #333;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-right: 10px;
 }
-.nav-link.active,
-.nav-link:hover {
-  color: rgb(103, 233, 103) !important;
-}
-.nav-pills .nav-link {
-  margin: 0 0.5rem;
-}
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+
+.nav-link:last-child {
+  margin-right: 0;
 }
